@@ -1,0 +1,220 @@
+<% layout('layout/boilerplate') %>
+    <%- include('./partials/navbar') %>
+        <div class="dashboard">
+            <div>
+                <h5 style="border-left:3px solid rgb(40, 126, 160); padding:3px;margin-bottom:15px">
+                    Attendance Requests
+                </h5>
+                <div class="bggray ">
+                    <table>
+                        <tr>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Checkin Time
+                            </th>
+                            <th>
+                                Check out Time
+                            </th>
+
+                            <th>
+                                Name
+                            </th>
+                        </tr>
+                        <% for(let att of attendances) { %>
+                            <% if(att.checkout){ console.log(att) %>
+                                <tr>
+                                    <td>
+                                        <%=att.status %>
+                                    </td>
+                                    <td>
+                                        <%=att.date %>
+                                    </td>
+                                    <td>
+                                        <%=att.checkin %>
+                                    </td>
+                                    <td>
+                                        <%=att.checkout %>
+                                    </td>
+
+                                    <td>
+                                        <%=att.userid.name %>
+                                    </td>
+                                    <% if(att.status==='Pending' ) {%>
+                                        <td>
+                                            <div class="d-flex" style="justify-content: space-between;">
+                                                <form action='/approval' method="POST">
+                                                    <button name="id" value=<%=att._id %> class="btn
+                                                        btn-success">Approve</button>
+                                                </form>
+                                                <form action='/attreject' method="POST">
+                                                    <button name="id" value=<%=att._id %> class="btn
+                                                        btn-danger">Reject</button>
+                                                </form>
+                                            </div>
+
+                                        </td>
+                                        <% } %>
+                                </tr>
+
+                                <%} %>
+                                    <% } %>
+                    </table>
+
+
+
+                </div>
+            </div>
+            <div>
+                <h5 style="border-left:3px solid rgb(40, 126, 160); padding:3px;margin:15px 0">
+                    Attendance Correction
+                </h5>
+                <div class="bggray ">
+                    <table>
+                        <tr>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Checkin Time
+                            </th>
+                            <th>
+                                Check out Time
+                            </th>
+
+                            <th>
+                                Name
+                            </th>
+                        </tr>
+                        <% for(let att of attendancecorrection) { %>
+                            <% if(att.checkout){ console.log(att) %>
+                                <tr>
+                                    <td>
+                                        <%=att.status %>
+                                    </td>
+                                    <td>
+                                        <%=att.date %>
+                                    </td>
+                                    <td>
+                                        <%=att.checkin %>
+                                    </td>
+                                    <td>
+                                        <%=att.checkout %>
+                                    </td>
+
+                                    <td>
+                                        <%=att.userid.name %>
+                                    </td>
+                                    <% if(att.status==='Pending' ) {%>
+                                        <td>
+                                            <div class="d-flex" style="justify-content: space-between;">
+                                                <form action='/approval' method="POST">
+                                                    <button name="id" value=<%=att._id %> class="btn
+                                                        btn-success">Approve</button>
+                                                </form>
+                                                <form action='/attreject' method="POST">
+                                                    <button name="id" value=<%=att._id %> class="btn
+                                                        btn-danger">Reject</button>
+                                                </form>
+                                            </div>
+
+                                        </td>
+                                        <% } %>
+                                </tr>
+
+                                <%} %>
+                                    <% } %>
+                    </table>
+
+
+
+                </div>
+            </div>
+            <div>
+                <h5 style="border-left:3px solid rgb(40, 126, 160); padding:3px;margin:15px 0">
+                    Leave Requests
+                </h5>
+                <div class="bggray ">
+                    <table>
+                        <tr>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Start
+                            </th>
+                            <th>
+                                End
+                            </th>
+                            <th>
+                                Reason
+                            </th>
+                            <th>
+                                Number of Days
+                            </th>
+                            <th>
+                                Request Date
+                            </th>
+                            <th>
+                                Name
+                            </th>
+
+                        </tr>
+                        <% for(let leave of leaves) { %>
+                            <% if(leave){ %>
+                                <tr>
+                                    <td>
+                                        <%=leave.status %>
+                                    </td>
+                                    <td>
+                                        <%=leave.start %>
+                                    </td>
+                                    <td>
+                                        <%=leave.end%>
+                                    </td>
+                                    <td>
+                                        <%=leave.reason %>
+                                    </td>
+                                    <td>
+                                        <%=leave.days %>
+                                    </td>
+                                    <td>
+                                        <%=leave.requestdate %>
+                                    </td>
+                                    <td>
+                                        <%=leave.userid.name%>
+                                    </td>
+
+                                    <% if(leave.status==='Pending' ){ %>
+                                        <td>
+                                            <div class="d-flex" style="justify-content: space-between;">
+                                                <form action='/approve' method="POST">
+                                                    <button name="id" value=<%=leave._id %> class="btn
+                                                        btn-success">Approve</button>
+                                                </form>
+                                                <form action='/reject' method="POST">
+                                                    <button name="id" value=<%=leave._id %> class="btn
+                                                        btn-danger">Reject</button>
+                                                </form>
+                                            </div>
+
+                                        </td>
+                                        <% } %>
+                                </tr>
+                                <%} %>
+
+                                    <%} %>
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>

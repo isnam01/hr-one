@@ -1,0 +1,128 @@
+<% layout('layout/boilerplate') %>
+    <%- include('./partials/navbar') %>
+        <div style="text-align: center;" class="m-5">
+            <h5>Apply for leave</h5>
+            <div class="bggray m-5 p-5">
+                <form action='/leave' method="POST" class="d-flex">
+                    <div class="d-flex">
+                        <div class="m-3">
+                            <select name="type" id="type">
+                                <% if(user.leave.birthday===1){%>
+                                    <option value="birthday" disabled>
+                                        Birthday
+                                    </option>
+                                    <%} else {%>
+                                        <option value="birthday">
+                                            Birthday
+                                        </option>
+                                        <%} %>
+                                            <% if(user.leave.normal===5) {%>
+                                                <option value="normal" disabled>
+                                                    Normal
+                                                </option>
+                                                <%} else {%>
+                                                    <option value="normal">
+                                                        Normal
+                                                    </option>
+                                                    <%} %>
+                                                        <option value="extra">
+                                                            Extra
+                                                        </option>
+                            </select>
+                        </div>
+                        <div class="m-3">
+                            <label for='start'>Start</label>
+                            <input type="date" id="start" name="start">
+                        </div>
+                        <div class="m-3">
+                            <label for='end'>End</label>
+                            <input type="date" id="end" name="end">
+                        </div>
+                        <div class="m-3 ">
+                            <label for='reason'>Reason</label>
+                            <input type="text" id="reason" name="reason">
+                        </div>
+                    </div>
+                    <div class="m-3">
+                        <button class="btn btn-success">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+            <div>
+                <h5>All leaves</h5>
+                <div class="bggray m-5">
+                    <table>
+                        <tr>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Start
+                            </th>
+                            <th>
+                                End
+                            </th>
+                            <th>
+                                Reason
+                            </th>
+                            <th>
+                                Number of Days
+                            </th>
+                            <th>
+                                Request Date
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                Manager
+                            </th>
+                        </tr>
+                        <% for(let leave of leaves) { %>
+                            <% if(leave){ %>
+                                <tr>
+                                    <td>
+                                        <%=leave.status %>
+                                    </td>
+                                    <td>
+                                        <%=leave.start %>
+                                    </td>
+                                    <td>
+                                        <%=leave.end%>
+                                    </td>
+                                    <td>
+                                        <%=leave.reason %>
+                                    </td>
+                                    <td>
+                                        <%=leave.days %>
+                                    </td>
+                                    <td>
+                                        <%=leave.requestdate %>
+                                    </td>
+                                    <td>
+                                        <%=leave.type %>
+                                    </td>
+                                    <td>
+                                        <%=leave.manager.name %>
+                                    </td>
+                                    <td>
+                                        <% if(leave.status==='Pending' ){ %>
+                                            <div>
+                                                <form action="/leave?_method=DELETE" method="POST">
+                                                    <button class="btn btn-danger" name="id" value=<%=leave._id%>
+                                                        >Cancel</button>
+                                                </form>
+                                            </div>
+                                            <%} %>
+                                    </td>
+                                </tr>
+                                <%} %>
+                                    <%} %>
+
+                    </table>
+                </div>
+            </div>
+
+
+        </div>

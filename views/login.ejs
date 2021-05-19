@@ -1,0 +1,27 @@
+<% layout('layout/boilerplate') %>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Goblin+One&display=swap" rel="stylesheet">
+
+    <div class="main">
+        <div class="form">
+            <img height="130px" width="110px" src="assets/logo.png" style="margin:10px;">
+            <form class="formdata" action="/signin" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Id</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your Id"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="Password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Enter your Password"
+                        id="Password" required>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="mb-3">
+                    <a href="/forgot" class="fpw">Forgot Password ?</a>
+                </div>
+            </form>
+        </div>
+    </div>

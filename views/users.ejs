@@ -1,0 +1,76 @@
+<% layout('layout/boilerplate') %>
+    <%- include('./partials/navbar') %>
+        <div>
+            <div class="attendancedata bggray">
+
+                <table>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Role
+                        </th>
+                        <th>
+                            Designation
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Date of Birth
+                        </th>
+                        <th>
+                            Date of Joining
+                        </th>
+
+                    </tr>
+                    <% for(let u of users){ %>
+                        <% if(u){ %>
+                            <tr>
+                                <td>
+                                    <%=u.name %>
+                                </td>
+                                <td>
+                                    <%=u.role.type %>
+                                </td>
+                                <td>
+                                    <%=u.designation %>
+                                </td>
+                                <td>
+                                    <%=u.email %>
+                                </td>
+                                <td>
+                                    <%var dob=JSON.stringify(u.dob)%>
+                                        <%date=dob.slice(1,11)%>
+                                            <%=date %>
+
+                                </td>
+
+
+                                <td>
+                                    <%var doj=JSON.stringify(u.doj)%>
+                                        <%date=doj.slice(1,11)%>
+                                            <%=date %>
+
+                                </td>
+                                <% if(user.role.type=='Admin' ) {%>
+                                    <td>
+                                        <form action='/deluser?_method=DELETE' method="POST">
+                                            <button class="btn btn-danger" value=<%=u._id %> name="id">
+                                                Delete</button>
+                                        </form>
+
+                                    </td>
+                                    <% } %>
+                            </tr>
+
+                            <% }%>
+                                <% } %>
+                </table>
+
+            </div>
+
+
+
+        </div>

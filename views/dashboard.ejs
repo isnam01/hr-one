@@ -1,0 +1,143 @@
+<% layout('layout/boilerplate') %>
+    <%- include('./partials/navbar') %>
+        <div class="dashboard">
+            <div class="bggray attendance mb-5">
+                <p>Home</p>
+                <% if(user.role.type==='Admin' ){ %>
+
+                    <a href='/signup'>
+                        <button class="btn btn-primary">
+                            Add
+                        </button>
+                    </a>
+
+                    <% } %>
+
+                        <% if(att && att.checkout){ %>
+
+                            <form action='/attendance' method="POST">
+                                <button class="btn btn-primary" disabled>Mark Attendance</button>
+                            </form>
+                            <% } else { %>
+                                <form action='/attendance' method="POST">
+                                    <button class="btn btn-primary">Mark Attendance</button>
+                                </form>
+                                <% } %>
+                                    <form action='/forgot' method="GET">
+                                        <button class="btn btn-primary">Reset Password</button>
+                                    </form>
+
+            </div>
+            <div class="user bggray mb-5">
+                <img src="assets/pic.png" class="thumbnail">
+                <div class="userdata">
+                    <div>
+                        <p>Name : <%=user.name %>
+                        </p>
+                        <% var event=new Date(user.dob) %>
+                            <% let dob=JSON.stringify(event)%>
+                                <%d=dob.slice(1,11)%>
+                                    <p>Date of Birth : <%=d %>
+                                    </p>
+                                    </p>
+                    </div>
+                    <div>
+                        <% var event=new Date(user.doj) %>
+                            <% let date=JSON.stringify(event)%>
+                                <%date=date.slice(1,11)%>
+                                    <p>Date of Joining : <%=date %>
+                                    </p>
+                                    <p>Email : <%=user.email %>
+                                    </p>
+                    </div>
+                    <div>
+                        <% if(user.manager){ %>
+                            <p>Manager : <%=user.manager.name %>
+                            </p>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class=" row col-12  ">
+                <div class="col-8 ">
+                    <h5 style="border-left:3px solid rgb(40, 126, 160); padding:3px;margin-bottom:15px">Today's
+                        Attendance
+                    </h5>
+                    <div class="bggray mb-5">
+                        <table>
+                            <tr>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Checkin Time
+                                </th>
+                                <th>
+                                    Check out Time
+                                </th>
+                                <th>
+                                    Manager
+                                </th>
+
+                            </tr>
+                            <% if(att){ %>
+                                <tr>
+                                    <td>
+                                        <%=att.status %>
+                                    </td>
+                                    <td>
+                                        <%=att.date %>
+                                    </td>
+                                    <td>
+                                        <%=att.checkin %>
+                                    </td>
+                                    <td>
+                                        <%=att.checkout %>
+                                    </td>
+                                    <td>
+                                        <% if(user.manager.name) { %>
+
+                                            <%=user.manager.name %>
+
+                                                <% } %>
+                                    </td>
+
+                                </tr>
+                                <%} %>
+                        </table>
+                    </div>
+                    <div class="d-flex ">
+
+
+                        <div class="col-4">
+                            <h5 style="border-left:3px solid rgb(40, 126, 160); padding:3px;margin-bottom:15px">
+                                Leaves</h5>
+                            <div class="bggray d-flex">
+
+
+                                <p class="m-2">Birthday Leave :
+                                    <%=1-user.leave.birthday %>
+                                </p>
+                                <p class="m-2">Normal Leave :
+                                    <%= 5-user.leave.normal%>
+                                </p>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <iframe
+                        src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=1&amp;bgcolor=%231ea7d5&amp;ctz=Asia%2FKolkata&amp;showTabs=0&amp;showCalendars=0&amp;showNav=1&amp;showTitle=0&amp;showPrint=0"
+                        style="border-width:0" width="500" height="400" frameborder="0" scrolling="no"></iframe>
+                </div>
+
+            </div>
+
+        </div>

@@ -1,0 +1,159 @@
+<% layout('layout/boilerplate') %>
+    <%- include('./partials/navbar') %>
+        <div style="margin:40px;">
+            <h5 style="border-left:3px solid rgb(40, 126, 160); padding:5px;margin-bottom:15px ;margin-left:35px">
+
+                Attendance Requests
+            </h5>
+            <div class="attendancedata bggray">
+
+                <table>
+                    <tr>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Checkin Time
+                        </th>
+                        <th>
+                            Check out Time
+                        </th>
+                        <th>
+                            Name
+                        </th>
+
+                    </tr>
+                    <% for(let att of attendance) { %>
+                        <% if(att){ %>
+                            <tr>
+                                <td>
+                                    <%=att.status %>
+                                </td>
+                                <td>
+                                    <%=att.date %>
+                                </td>
+                                <td>
+                                    <%=att.checkin %>
+                                </td>
+                                <td>
+                                    <%=att.checkout %>
+                                </td>
+                                <td>
+                                    <%= att.userid.name%>
+                                </td>
+
+                                <td>
+                                    <% if(att.status==='Pending' ){ %>
+                                        <div>
+                                            <form action="/attendance?_method=DELETE" method="POST">
+                                                <button class="btn btn-danger" name="id" value=<%=att._id%>
+                                                    >Cancel</button>
+                                            </form>
+                                        </div>
+                                        <%} %>
+                                </td>
+                            </tr>
+                            <%} %>
+                                <% }%>
+
+                </table>
+
+            </div>
+            <div>
+                <h5 style="border-left:3px solid rgb(40, 126, 160); padding:5px;margin-bottom:15px;margin-left:35px">
+                    Attendance Correction
+                </h5>
+                <div class="attendancedata bggray">
+
+                    <table>
+                        <tr>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Checkin Time
+                            </th>
+                            <th>
+                                Check out Time
+                            </th>
+                            <th>
+                                Name
+                            </th>
+
+                        </tr>
+                        <% for(let att of attendancecorrection) { %>
+                            <% if(att){ %>
+                                <tr>
+                                    <td>
+                                        <%=att.status %>
+                                    </td>
+                                    <td>
+                                        <%=att.date %>
+                                    </td>
+                                    <td>
+                                        <%=att.checkin %>
+                                    </td>
+                                    <td>
+                                        <%=att.checkout %>
+                                    </td>
+                                    <td>
+                                        <%= att.userid.name%>
+                                    </td>
+
+                                    <td>
+                                        <% if(att.status==='Pending' ){ %>
+                                            <div>
+                                                <form action="/attendance?_method=DELETE" method="POST">
+                                                    <button class="btn btn-danger" name="id" value=<%=att._id%>
+                                                        >Cancel</button>
+                                                </form>
+                                            </div>
+                                            <%} %>
+                                    </td>
+                                </tr>
+                                <%} %>
+                                    <% }%>
+
+                    </table>
+
+                </div>
+            </div>
+            <div>
+                <h5 style="border-left:3px solid rgb(40, 126, 160); padding:5px;margin-bottom:15px;margin-left:35px">
+                    Apply for Attendance Correction
+                </h5>
+                <form action="/attendancecorrection" method="POST"
+                    style="display: flex;justify-content: space-between;width: 100%;">
+                    <div class="d-flex bggray m-5" style="align-items: center; justify-content: center;">
+                        <div class="m-3">
+                            <label for='date'>Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="m-3">
+                            <label for='checkin'>Checkin</label>
+                            <input type="time" id="checkin" name="checkin" required>
+                        </div>
+                        <div class="m-3">
+                            <label for='checkout'>Checkout</label>
+                            <input type="time" id="checkout" name="checkout" required>
+                        </div>
+                        <div class="m-3 ">
+                            <label for='reason'>Reason</label>
+                            <input type="text" id="reason" name="reason" required>
+                        </div>
+                        <form action='/attendancecorrection' method="POST">
+                            <button class="btn btn-primary"> Apply Attendance Correction</button>
+
+                        </form>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>

@@ -1,0 +1,225 @@
+<% layout('layout/boilerplate') %>
+    <%- include('./partials/navbar') %>
+        <% if(user.role.type='Admin' ){ %>
+            <% var temp='disabled' %>
+                <% }else { %>
+                    <% var temp='' } %>
+                        <div>
+                            <div class="bggray m-5">
+                                <img src="assets/pic.png" class="pic">
+                                <div class="userdata m-3">
+                                    <div>
+                                        <p>Name : <%=user.name %>
+                                        </p>
+
+                                        <p>Mobile No. : <%=user.mobile %>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p>Email : <%=user.email %>
+                                        </p>
+                                        <% var event=new Date(user.doj) %>
+                                            <% let date=JSON.stringify(event)%>
+                                                <%date=date.slice(1,11)%>
+                                                    <p>Date of Joining : <%=date %>
+                                                    </p>
+                                    </div>
+                                    <div>
+                                        <% var e=new Date(user.dob) %>
+                                            <% let d=JSON.stringify(e)%>
+                                                <%d=d.slice(1,11)%>
+                                                    <p>Date of Birth : <%=date %>
+                                                    </p>
+                                                    <p>Role : <%=user.role.type %>
+                                                    </p>
+                                    </div>
+
+                                    <div>
+                                        <% if(user.manager){ %>
+                                            <p>Reporting Manager : <%=user.manager.name %>
+                                            </p>
+                                            <p>Manager Email : <%=user.manager.email %>
+                                            </p>
+                                            <% } %>
+
+                                    </div>
+                                    <div>
+                                        <% if(user.manager) { %>
+
+                                            <p>Manager Mobile : <%=user.manager.mobile %>
+                                            </p>
+                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 p-5 ">
+
+                                <h5 style="border-left:3px solid rgb(40, 126, 160); padding:3px;margin-bottom:15px">
+                                    Basic Information
+                                </h5>
+                                <form action="/signup?_method=PUT" method="POST">
+                                    <div style="display: flex;flex-direction: row;" class="formdata">
+                                        <div class="col-6">
+                                            <div class="m-3">
+                                                <label for="salutation" class="form-label">Salutation</label>
+                                                <select name="salutation" id="salutation">
+                                                    <option value="Ms.">
+                                                        Ms.
+                                                    </option>
+                                                    <option value="Mr.">
+                                                        Mr.
+                                                    </option>
+                                                    <option value="Mrs.">
+                                                        Mrs.
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="m-3">
+                                                <label for="Name" class="form-label">Name</label>
+                                                <input type="text" name="name" class="form-control" id="name"
+                                                    value=<%=user.name %> >
+                                            </div>
+
+                                            <div class="m-3">
+                                                <label for="nationality" class="form-label">Nationality</label>
+                                                <input type="text" name="nationality" class="form-control"
+                                                    id="nationality" value=<%=user.nationality %>
+                                                <%=temp %> >
+                                            </div>
+
+                                            <div class="m-3">
+                                                <label for="city" class="form-label">City</label>
+                                                <input class="form-control" id="city" name="city" type="text"
+                                                    value=<%=user.city%>>
+                                            </div>
+
+                                            <div style="margin:32px 15px">
+                                                <label for="gender" class="form-label">Gender</label>
+                                                <select name="gender" id="gender">
+                                                    <option value="female">
+                                                        Female
+                                                    </option>
+                                                    <option value="male">
+                                                        Male
+                                                    </option>
+                                                    <option value="other">
+                                                        Other
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="m-3">
+                                                <label for="mobile" class="form-label">Mobile</label>
+                                                <input type="text" name="mobile" class="form-control"
+                                                    value=<%=user.mobile %>
+                                                id="mobile">
+                                            </div>
+                                            <div class="m-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" name="email" class="form-control" id="email"
+                                                    value=<%=user.email %>
+                                                <%=temp %> >
+                                            </div>
+                                            <div class="m-3">
+                                                <label for="dob" class="form-label">Date of Birth</label>
+                                                <input class="form-control" id="dob" name="dob" value=<%=user.dob %>
+                                                type="date" >
+                                            </div>
+                                            <div class="m-3">
+                                                <label for="address" class="form-label">Address</label>
+                                                <input class="form-control" id="address" name="address" type="text"
+                                                    value=<%=user.address %> />
+                                            </div>
+
+                                            <div class="m-3">
+                                                <label for="state" class="form-label">State</label>
+                                                <input class="form-control" id="state" name="state" type="text"
+                                                    value=<%=user.state %>>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <h5 style="border-left:3px solid rgb(40, 126, 160); padding:3px;margin:15px 0">
+                                        Position Details
+                                    </h5>
+                                    <div class="formdata col-12" style="display: flex;flex-direction: row;">
+
+                                        <div class="col-6">
+                                            <div class="m-3 ">
+                                                <label for="company" class="form-label">Company</label>
+                                                <input class="form-control" id="company" name="company" type="text"
+                                                    value=<%=user.company %>
+                                                <%=temp %>/>
+                                            </div>
+                                            <div class="m-3 ">
+                                                <label for="designation" class="form-label">Designation</label>
+                                                <input class="form-control" id="designation" name="designation"
+                                                    type="text" value=<%=user.designation %>
+                                                <%=temp %>>
+                                            </div>
+
+                                            <div class="m-3">
+                                                <label for="branch" class="form-label">Branch</label>
+                                                <input class="form-control" id="branch" name="branch" type="text"
+                                                    value=<%=user.branch %>
+                                                <%=temp %>>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <% if(user.manager) { %>
+                                                <div class="m-3">
+                                                    <label for="manager" class="form-label">Manager</label>
+                                                    <select class="form-select" aria-label="Default select example"
+                                                        <%=temp %>
+                                                        id="manager" name="manager">
+
+                                                        <% for(let i of managers) {%>
+                                                            <% if(i.name===user.manager.name) {%>
+                                                                <option value=<%=i.name %> selected><%=i.name %>
+                                                                </option>
+                                                                <% } else {%>
+                                                                    <option value=<%=i.name %>><%=i.name %>
+                                                                    </option>
+                                                                    <% } %>
+
+                                                                        <% } %>
+
+                                                    </select>
+                                                </div>
+                                                <% } %>
+                                                    <div class="m-3">
+                                                        <label for="role" class="form-label">Role</label>
+                                                        <select class="form-select" aria-label="Default select example"
+                                                            id="role" name="role" <%=temp %>>
+                                                            <% var list=['Admin' ,'Manager','Trainee'] %>
+                                                                <% for(let i of list) {%>
+                                                                    <% if(i===user.role.type){ %>
+                                                                        <option value=<%=i%>><%=i %>
+                                                                        </option>
+                                                                        <% } else {%>
+                                                                            <option value=<%=i%>
+                                                                                ><%=i %>
+                                                                            </option>
+                                                                            <% } %>
+                                                                                <% } %>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="m-3">
+                                                        <label for="doj" class="form-label">Date of Joining</label>
+                                                        <input class="form-control" id="doj" name="doj"
+                                                            value=<%=user.doj %>
+                                                        type="date" <%=temp %>>
+                                                    </div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>

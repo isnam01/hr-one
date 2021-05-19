@@ -1,0 +1,146 @@
+body{
+    background-color: rgb(238, 238, 238);
+}
+
+.main{
+    display:flex ;
+    min-height: 100vh;
+    background-image: url('./assets/bg.png');
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.form{
+    display:flex;
+    flex-direction: column;
+    margin:auto;
+    align-items: center;
+    
+}
+
+.heading{
+    color:white;
+    font-family: 'Goblin One', cursive;
+}
+
+.formdata {
+ 
+    border-radius: 10px;
+    background-color: white;
+    padding:50px;
+}
+
+.btn-primary{
+    background-color: rgb(40, 126, 160);
+    color: white;
+}
+
+.fpw{
+    color: rgb(84, 96, 97) !important;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.navbar{
+    background-color: rgb(40, 126, 160);
+    color: white;
+}
+
+.dashboard{
+    display:flex;
+    flex-direction: column;
+    margin: 50px;
+}
+
+.attendance{
+    display: flex;
+    padding:10px;
+    align-items: center;
+}
+
+.bggray{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    padding:20px;
+    flex-wrap: wrap;
+    
+}
+
+.attendance{
+    justify-content: space-between;
+}
+
+.thumbnail{
+    border-radius: 50%;
+    max-width: 100px;
+}
+
+.userdata{
+display: flex;
+margin-left:60px;
+color:rgb(73, 72, 72);
+flex-wrap: wrap;
+font-weight: 400;
+}
+
+.userdata div{
+    margin:15px
+}
+
+.mark{
+    background-color: rgb(40, 126, 160);
+    border-radius: 5px;
+    color:white;
+    padding:7px;
+    font-size:13px;
+    outline: none
+}
+
+.pic{  
+    border-radius: 50%;
+    max-width: 150px;
+}
+.nav-item a{
+    color:white !important;
+}
+
+.dailyattendance{
+ flex-direction :row;
+    
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    color:rgb(88, 86, 86)
+  }
+  
+  td, th {
+    text-align: left;
+    padding: 20px;
+  }
+  
+  .attendancedata{
+      margin:40px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+  }
+
+  .dropdown-menu li  a{
+    color:rgb(40, 126, 160) !important;
+  }
+
+  .cards{
+      margin:40px;
+      display: flex;
+      justify-content:space-evenly;
+      
+  }
